@@ -98,33 +98,48 @@ function create() {
         bball.events.onInputDown.add(popball, this);
     }
     
-    bball.body.onBeginContact.add(bhit, this);
+    function saveData(data, filename){
+    data = JSON.stringify(data, undefined, 4)
+    var blob = new Blob([data], {type: 'text/json'}),
+        e    = document.createEvent('MouseEvents'),
+        a    = document.createElement('a')
+
+    a.download = filename
+    a.href = window.URL.createObjectURL(blob)
+    a.dataset.downloadurl =  ['text/json', a.download, a.href].join(':')
+    e.initMouseEvent('click', true, false,
+                     window, 0, 0, 0, 0, 0,
+                     false, false, false, false, 0, null)
+    a.dispatchEvent(e)
+  }
     
+    bball.body.onBeginContact.add(bhit, this);
+
     function bhit (body, bodyB) {
-        if (body){
+      
         if (bball.body.velocity.x > 15 || bball.body.velocity.y > 15){
           small.play();
-        }
+        
     }
     }
     
     rball.body.onBeginContact.add(rhit, this);
     
     function rhit (body, bodyB) {
-      if (body){
+     
         if (rball.body.velocity.x > 15 || rball.body.velocity.y > 15){
           medium.play();
-        }  
+        
     }
     }
     
     yball.body.onBeginContact.add(yhit, this);
     
     function yhit (body, bodyB) {
-       if (body){
+       
         if (yball.body.velocity.x > 15 || yball.body.velocity.y > 15){
           big.play();
-        }  
+        
     }
     }
     
@@ -165,6 +180,9 @@ function create() {
                  clearInterval(t);
                  arrow.destroy();
                  create();
+                 var d = {'test': 1}
+                 var filename = 'test'
+                 saveData(d, filename)
                  console.log("Yes I have been flipped");
              } 
          }
@@ -175,6 +193,9 @@ function create() {
                  clearInterval(t);
                  arrow.destroy();
                  create();
+                 var d = {'test': 2}
+                 var filename = 'test2'
+                 saveData(d, filename)
                  console.log("Yes I have been flipped");
              } 
          }
