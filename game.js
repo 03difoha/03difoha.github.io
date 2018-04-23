@@ -1,5 +1,8 @@
 function coopGame(){
 
+version = 0.5
+console.log(version)
+    
 $(document).ready(function () {
 
     $('.home').hide();
