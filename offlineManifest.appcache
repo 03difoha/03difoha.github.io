@@ -3,6 +3,7 @@ CACHE MANIFEST
 index.html
 manifest.json
 style.css
+blob.js
 phaser.min.js
 arrow.png
 bball.png
