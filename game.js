@@ -28,9 +28,11 @@ function preload() {
      
 function create() {
     
+    data = {'Started': String(new Date())}
+    
     if (window.DeviceOrientationEvent){
 		window.addEventListener("deviceorientation", function(event){
-            console.log (Math.round(event.beta))
+//            console.log (Math.round(event.beta))
             y = (Math.round(event.beta))
             game.physics.p2.gravity.y = 10 * y
         }, true);
@@ -101,20 +103,7 @@ function create() {
         bball.events.onInputDown.add(popball, this);
     }
     
-    function saveData(data, filename){
-    data = JSON.stringify(data, undefined, 4)
-    var blob = new Blob([data], {type: 'text/json'}),
-        e    = document.createEvent('MouseEvents'),
-        a    = document.createElement('a')
 
-    a.download = filename
-    a.href = window.URL.createObjectURL(blob)
-    a.dataset.downloadurl =  ['text/json', a.download, a.href].join(':')
-    e.initMouseEvent('click', true, false,
-                     window, 0, 0, 0, 0, 0,
-                     false, false, false, false, 0, null)
-    a.dispatchEvent(e)
-  }
     
     bball.body.onBeginContact.add(bhit, this);
 
@@ -153,6 +142,7 @@ function create() {
     
 } 
     
+    
      function popCheck(){
          living = yballs.countLiving() + rballs.countLiving() + bballs.countLiving();
          if(living < 1 && y >= 0){
@@ -161,6 +151,8 @@ function create() {
          arrow.body.setCollisionGroup(arrowCollisionGroup);
          game.physics.p2.restitution = 1.1;
          arrow.body.fixedRotation = true;
+//         arrow.inputEnabled = true;
+//         arrow.events.onInputDown.add(test, this);
          
          var t=setInterval(upCheck,1000);
          
@@ -171,11 +163,11 @@ function create() {
          arrow.angle = 180
          game.physics.p2.restitution = 1.1;
          arrow.body.fixedRotation = true;
+//         arrow.inputEnabled = true;
+//         arrow.events.onInputDown.add(test, this);     
          var t=setInterval(downCheck,1000); 
          
          }
-     
-         
          
          function upCheck(){
              console.log("Have I been flipped yet?")
@@ -183,9 +175,6 @@ function create() {
                  clearInterval(t);
                  arrow.destroy();
                  create();
-                 var d = {'test': 1}
-                 var filename = 'test'
-                 saveData(d, filename)
                  console.log("Yes I have been flipped");
              } 
          }
@@ -196,19 +185,46 @@ function create() {
                  clearInterval(t);
                  arrow.destroy();
                  create();
-                 var d = {'test': 2}
-                 var filename = 'test2'
-                 saveData(d, filename)
                  console.log("Yes I have been flipped");
              } 
          }
      }
+
 }
    
 function render () {
     game.debug.body(yballs);
     game.debug.body(bballs);
     game.debug.body(rballs);
+    game.debug.pointer(game.input.pointer1);
+    
+    
+    function saveData(data, filename){
+    data = JSON.stringify(data, undefined, 4)
+    var blob = new Blob([data], {type: 'text/json'}),
+        e    = document.createEvent('MouseEvents'),
+        a    = document.createElement('a')
+
+    a.download = filename
+    a.href = window.URL.createObjectURL(blob)
+    a.dataset.downloadurl =  ['text/json', a.download, a.href].join(':')
+    e.initMouseEvent('click', true, false,
+                     window, 0, 0, 0, 0, 0,
+                     false, false, false, false, 0, null)
+    a.dispatchEvent(e)
+  }
+    
+    if (game.input.pointer1.duration > 2000){
+      data['Ended'] = String(new Date())
+      saveData(data, String(new Date()))
+      window.setTimeout(partB,5);
+        
+        function partB(){
+            document.location.reload()
+        }
+      
+    }
+    
 }
 
 function update() {}
