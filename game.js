@@ -1,4 +1,4 @@
-function coopGame(){
+//function coopGame(){
 
 version = 0.5
 console.log(version)
@@ -196,7 +196,7 @@ function render () {
     game.debug.body(yballs);
     game.debug.body(bballs);
     game.debug.body(rballs);
-    game.debug.pointer(game.input.pointer1);
+//    game.debug.pointer(game.input.pointer1);
     
     
     function saveData(data, filename){
@@ -214,14 +214,14 @@ function render () {
     a.dispatchEvent(e)
   }
     
-    if (game.input.pointer1.duration > 2000){
+    if (game.input.pointer1.duration > 10000){
       data['Ended'] = String(new Date())
       saveData(data, String(new Date()))
-      window.setTimeout(partB,5);
-        
-        function partB(){
-            document.location.reload()
-        }
+//      window.setTimeout(partB,5);
+//        
+//        function partB(){
+//            document.location.reload()
+//        }
       
     }
     
@@ -233,4 +233,4 @@ function update() {}
     
 });
 
-}
+//}
