@@ -1,5 +1,5 @@
-body{
-    margin:0;
+body {
+  margin: 0;
 }
 
 #main {
@@ -14,47 +14,47 @@ h3 {
   margin: 0 0 30px;
 }
 
-#header{
-    color: #3EC99C;
-   width: 90%;
+#header {
+  color: #3EC99C;
+  width: 90%;
   margin: 30px auto;
   font-family: sans-serif;
 }
 
-#full{
-    width:100%;
-    background-color:#2D3049;
+#full {
+  width: 100%;
+  background-color: #2D3049;
 }
 
 #main h2 {
-    color: #2D3049;
-    
+  color: #2D3049;
+
 }
 
-h1{
-    font-family: 'Poppins', sans-serif;
-    font-size: 2.5em;
-    margin-bottom: 0;
+h1 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2.5em;
+  margin-bottom: 0;
 }
 
-h2{
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
+h2 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
 }
 
-p{
-    font-family: 'Poppins', sans-serif;
-    font-weight: 400;
+p {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
 
 }
 
 #header p {
-    margin: 0;
+  margin: 0;
 }
 
-a{
-    text-decoration: none;
-    color: #2D3049;
+a {
+  text-decoration: none;
+  color: #2D3049;
 }
 
 #main {
@@ -79,18 +79,18 @@ a:nth-of-type(2n) {
   a {
     width: calc(25% - 6px);
   }
-  
+
   a:nth-of-type(2n) {
     margin-right: 8px;
   }
-  
+
   a:nth-of-type(4n) {
     margin-right: 0;
   }
 }
 
 a:hover img {
-  transform: scale(1.15);
+  transform: scale(1.05);
 }
 
 figure {
@@ -101,6 +101,8 @@ figure {
 figcaption {
   margin-top: 15px;
 }
+
+
 
 img {
   border: none;
